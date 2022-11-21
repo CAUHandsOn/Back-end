@@ -26,7 +26,7 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MvcResult;
 
-@DisplayName("Controller - User")
+@DisplayName("Controller - Auth")
 class AuthControllerTest extends BaseControllerTest {
 
     List<HashMap<String, Object>> users = new ArrayList<>() {{
@@ -62,7 +62,7 @@ class AuthControllerTest extends BaseControllerTest {
     @Test
     @DisplayName("signUp")
     void register() throws Exception {
-        JwtDto res = register(users.get(0), Code.OK.getCode(), false);
+        JwtDto res = register(users.get(0), Code.OK.getCode(), true);
         then(res.getAccessToken()).isNotNull();
     }
 
@@ -102,7 +102,7 @@ class AuthControllerTest extends BaseControllerTest {
                         , fieldWithPath("name").description("성명")
                         , fieldWithPath("role").description("역할(student/professor)")
                     ),
-                    responseFields(
+                    relaxedResponseFields(
                         fieldWithPath("success").description("성공 여부")
                         , fieldWithPath("code").description("응답 코드")
                         , fieldWithPath("message").description("메시지")
