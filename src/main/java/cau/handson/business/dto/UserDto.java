@@ -48,8 +48,7 @@ public class UserDto {
         Optional.ofNullable(name).ifPresent(user::setName);
         Optional.ofNullable(role).ifPresent(user::setRole);
         Optional.ofNullable(id).ifPresent(user::setId);
-        Optional.ofNullable(email).ifPresent(user::setId);
-
+        Optional.ofNullable(email).ifPresent(user::setEmail);
         return user;
     }
 }
